@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.2.xsd
+	 ">
+	
+	<!-- 使用配置文件的方式实现Teacher类的IOC和DI -->
+	<bean id="teacher" class="com.lddx.bean.Teacher" autowire="byName" >
+		<!-- 使用set方法实现DI -->
+		<property name="name" value="zs"></property>
+		<property name="age" value="30"></property>
+		<property name="list">
+			<list>
+				<value>a</value>
+				<value>b</value>
+				<value>c</value>
+			</list>
+		</property>
+		<property name="set">
+			<set>
+				<value>1</value>
+				<value>2</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="k1" value="v1"></entry>
+				<entry key="k2" value="v2"></entry>
+			</map>
+		</property>
+		<property name="prop">
+			<props>
+				<prop key="p1">v1</prop>
+				<prop key="p2">v2</prop>
+			</props>
+		</property>
+		<!--  可以用自动装配的方式来对cat属性赋值
+		<property name="cat" ref="cat"></property>
+		-->
+	</bean>
+	<!-- 使用配置文件的方式实现MySQLConnection类的IOC和DI -->
+	<!-- 使用构造方法的方式进行DI -->
+	<!-- 
+	<bean id="mysqlCon" class="com.lddx.bean.MySQLConnection">
+		<constructor-arg index="0" type="String" value="com.mysql.jdbc.Driver"></constructor-arg>
+		<constructor-arg index="1" type="String" value="jdbc:mysql://localhost:3306/test"></constructor-arg>
+		<constructor-arg index="2" type="String" value="root"></constructor-arg>
+		<constructor-arg index="3" type="String" value="1234"></constructor-arg>
+	</bean>
+	--> 
+	<!-- 配置Cat类  是javabean类 -->
+	<!-- 使用set依赖注入对属性赋值 -->
+
+	<bean id="cat" class="com.lddx.bean.Cat">
+		<property name="name" value="汤姆"></property>
+		<property name="age" value="5"></property>
+	</bean>
+  	<bean id="cat2" class="com.lddx.bean.Cat">
+		<property name="name" value="汤姆1"></property>
+		<property name="age" value="51"></property>
+	</bean>
+  
+	
+	
+	
+	
+	<!-- 开启全包扫描    IOC   -->
+	<context:component-scan base-package="com.lddx.bean"></context:component-scan>
+
+	<!-- 加载/读取外部的配置文件 -->
+	<context:property-placeholder location="classpath:/db.properties"/>
+	<!-- 在配置文件中需要将注解进行依赖注入的数据写在此处 -->
+	<util:list id="mylist">
+		<value>1001</value>
+		<value>1002</value>
+		<value>1003</value>
+	</util:list>
+	<util:set id="myset">
+		<value>s01</value>
+		<value>s02</value>
+	</util:set>
+	<util:map id="mymap">
+		<entry key="k1" value="v1"></entry>
+		<entry key="k2" value="v2"></entry>
+	</util:map>
+	<util:properties id="myprop">
+		<prop key="a">1</prop>
+		<prop key="b">2</prop>
+	</util:properties>
+
+
+
+
+
+
+
+</beans>

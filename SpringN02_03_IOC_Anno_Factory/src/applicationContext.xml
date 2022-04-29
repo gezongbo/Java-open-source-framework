@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	 ">
+
+	<!-- 配置Doctor类   保证Doctor类的无参构造是有效的，否则就会报错-->
+	<!--  
+	<bean id="doctor" class="com.lddx.bean.Doctor"></bean>
+	-->
+	
+	
+	<!-- 配置Doctor类的实例工厂   配置文件的方式 -->
+	<!-- 
+	<bean id="dif" class="com.lddx.bean.DoctorInstanceFactory"></bean>
+	<bean id="doctor" factory-bean="dif" factory-method="getDoctor"></bean>
+	 -->
+	
+	<!-- 配置文件的方式配置Doctor类的静态工厂 -->
+	<!--  
+	<bean id="doc2" class="com.lddx.bean.DoctorStaticFactory" factory-method="getDoctor"></bean>
+	-->
+	
+	
+	<!-- 开启全包扫描   （注解）-->
+	<context:component-scan base-package="com.lddx.bean"></context:component-scan>
+	
+</beans>

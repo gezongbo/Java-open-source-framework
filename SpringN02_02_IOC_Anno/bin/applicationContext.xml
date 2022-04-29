@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	 ">
+
+	<!-- 使用xml配置文件的方式配置javabean类 Person类 -->
+	<!-- Spring框架的IOC底层实现：
+	     Person p=new Person();
+	     Map.put("person",p);
+	 -->
+	<!--  
+	<bean id="person" class="com.lddx.bean.Person"></bean>
+	-->	 
+
+	
+	<!-- 开启全包扫描 
+		 base-package="" 指定要注解的类所在的包
+	-->
+	<context:component-scan base-package="com.lddx.bean"></context:component-scan>
+	
+	
+</beans>
