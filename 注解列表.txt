@@ -1,0 +1,47 @@
+@Component    通用注解，修饰类
+@Controller   WEB层
+@Service     Service层
+@Repository  Dao层
+
+@Bean       方法
+
+     
+@Value              常规属性
+@Autowired      javabean类型的属性
+@Qualifier
+
+@Scope     单例，多例
+
+@Lazy    懒加载
+
+@PostConstruct   Spring容器初始化
+@PreDestory        Spring容器的销毁
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

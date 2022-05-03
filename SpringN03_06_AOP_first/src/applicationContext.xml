@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	 ">
+	
+	<!-- 开启全包扫描 -->
+	<context:component-scan base-package="com.lddx"></context:component-scan>
+	
+	<!-- 
+	<bean id="firstAspect" class="com.lddx.aspect.FirstAspect"></bean>
+	-->
+	
+	<!-- 配置FirstAspect切面类、通知方法before -->
+	<aop:config>
+		<!-- 配置切面类的    ref=""表示要配置的切面类的id  -->  
+		<aop:aspect ref="firstAspect">
+			<!-- 配置通知方法   aop:before是前置通知，在目标方法之前执行
+			     method="" 配置前置通知要执行的哪个方法
+			     pointcut="" 切入点规则，切入点表达式
+			             切入点表达式+连接点=切入点   切入点是决定对哪个目标对象和目标方法进行功能的增强
+			-->
+			<aop:before method="before" pointcut="within(com.lddx.service.UserServiceImpl)"/>
+			<!-- 底层理解：
+			             对com.lddx.service包下的UserServiceImpl这个目标对象中所有方法添加功能的增强，增强的功能代码是要
+			             执行切面类firstAspect中的before通知方法，根据aop:before是在目标方法之前执行增强代码
+			 -->
+		</aop:aspect>
+	</aop:config>
+	
+	
+	
+	
+</beans>

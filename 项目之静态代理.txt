@@ -1,0 +1,37 @@
+测试                                       --->            zl                                      --->         fbb                                              interface Star
+                                                             class ZL                                          class FBB
+                                                                      eat()                                              eat()
+                                                                     sign()                                             sign()
+                                                                          你是谁                                            FBB吃饭
+                                                                          记录                                               FBB签名
+--------------------------------------------------------------------------------------------------------------------------------
+              WEB层                              静态代理                                             Service层                         interface  UserService
+测试     class  UserServlet            class  UserServiceStaticProxy         class UserServiceImpl
+请求            addUserServlet()             addUser()                                       addUser()
+                                                          delUser()                                        delUser()
+                                                          queryUser()                                    queryUser()'
+'                                                                记录日志                                       调用Dao层的方法......
+                                                                 权限控制
+                                                                 开启事务
+                                                                 提交事务
+--------------------------------------------------------------------------------------------------------------------------
+请求     --->       Web层          --->            Service层
+                      UserServlet                         UserServiceImpl  
+                          addUserServlet                        addUser()
+                                                                           delUser()
+                                                                           queryUser()
+-------------------------------------------------------------------------------------------------------------------------
+请求     --->       Web层          --->         java动态代理           --->              Service层
+                     UserServlet                    UserServiceJavaProxy               UserServiceImpl
+                          addUserServlet()            记录日志                                 
+                                                                 权限控制
+                                                                 开启事务
+                                                                 提交事务
+--------------------------------------------------------------------------------------------------------------------------
+请求     --->       Web层          --->       cglib动态代理           --->              Service层
+                      UserServlet                    UserServiceCglibProxy               UserServiceImpl
+                          addUserServlet()            记录日志                                 
+                                                                 权限控制
+                                                                 开启事务
+                                                                 提交事务
+
