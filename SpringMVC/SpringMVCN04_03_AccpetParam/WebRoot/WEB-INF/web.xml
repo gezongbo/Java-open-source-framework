@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 配置前端控制器DispatcherServlet -->
+  <servlet>
+  	 <servlet-name>SpringMVC</servlet-name>
+  	 <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	 <!-- 指定SpringMVC核心配置文件的位置 ，会从src目录下查找classpath后写的文件-->
+  	 <init-param>
+  	 	<param-name>contextConfigLocation</param-name>
+  	 	<param-value>classpath:springmvc.xml</param-value>
+  	 </init-param>
+  </servlet>
+  <servlet-mapping>
+  	 <servlet-name>SpringMVC</servlet-name>
+  	 <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 配置SpringMVC的编码过滤器  CharacterEncodingFilter -->
+  <filter>
+  	 <filter-name>CharacterEncodingFilter</filter-name>
+  	 <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	 <!-- 配置初始化编码 -->
+  	 <init-param>
+  	 	 <param-name>encoding</param-name>
+  	 	 <param-value>utf-8</param-value>
+  	 </init-param>
+  </filter>
+  <filter-mapping>
+     <filter-name>CharacterEncodingFilter</filter-name>
+     <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  
+</web-app>

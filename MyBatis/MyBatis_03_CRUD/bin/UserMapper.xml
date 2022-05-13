@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间，保证值唯一，标识UserMapper.xml文件的，值一般包+xml的文件名命名组成 -->
+<mapper namespace="com.lddx.mapper.UserMapper">
+	<!-- 修改操作 -->
+	<!-- 根据id修改年龄 -->
+	<update id="update01">
+		update user set age=#{age} where id=#{id};
+	</update>  
+	<!-- 
+		思考：现在是根据id修改年龄   update user set age=#{} where id=#{};
+		           后面如果想根据id同时修改年龄和姓名 update user set age=#{},name=#{} where id=#{}
+		           两种不同的修改要求，需要写2个sql语句的配置，比较麻烦
+		    MyBatis框架提供了一种动态sql语句，可以解决入上问题
+	 --> 
+	 <!-- 修改操作，动态sql语句的写法 -->
+	 <update id="update02">
+	 	 update user 
+	 	 <set>
+	 	 	<if test="age>=0">age=#{age},</if>
+	 	 	<if test="name!=null">name=#{name}</if>
+	 	 </set> 
+	 	 where id=#{id};
+	 </update>
+	
+
+     <!-- 查询操作，静态sql语句的写法 ,需要写3个sql语句的配置，比较麻烦
+     	     只根据id做查询 select * from user where id=#{};
+     	     想根据id和name作为查询条件：select * from user where id=#{} and name=#{};
+     	     想根据id，name和age作为条件查询：select * from user where id=#{} and name=#{} and age=#{}; 
+     -->
+     <select id="select01" resultType="com.lddx.bean.User">
+     	 select * from user 
+     	 <where>
+     	     <if test="id!=0">id=#{id}</if>
+     	     <if test="name!=null"> and name=#{name}</if>
+     	     <if test="age>=0"> and age=#{age}</if>
+     	 </where>
+     	 ;
+     </select>
+
+	<!-- 插入操作，动态sql语句的写法
+	     insert into user(id) values(#{});
+	     insert into user(name) values(#{});
+	     insert into user(id,name) values(#{},#{});
+	     insert into user(name,age) values(#{},#{});
+	     insert into user(id,name,age) values(#{},#{},#{});
+	 -->
+	<insert id="insert01">
+		insert into user
+		<trim prefix="(" suffix=")">
+			<if test="id!=0">id,</if>
+			<if test="name!=null">name,</if> 
+			<if test="age>=0">age</if>
+		</trim> 
+		values
+		<trim prefix="(" suffix=")">
+			<if test="id!=0">#{id},</if>
+			<if test="name!=null">#{name},</if> 
+			<if test="age>=0">#{age}</if>
+		</trim>
+		;
+	</insert>
+
+	<!-- 删除操作，动态sql语句的写法
+	     delete from user where id=#{};
+	     delete from user where id=#{} and name=#{}
+	     ...
+	     select * from user where id=#{} and name=#{};
+	 -->
+     <delete id="delete01">
+     	 delete from user
+     	 <where>
+     	     <if test="id!=0">id=#{id}</if>
+     	     <if test="name!=null"> and name=#{name}</if>
+     	     <if test="age>=0"> and age=#{age}</if>
+     	 </where>
+     	 ;
+     </delete>
+
+
+
+
+
+
+
+</mapper>

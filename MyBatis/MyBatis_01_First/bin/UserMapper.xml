@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间，保证值唯一，标识UserMapper.xml文件的，值一般包+xml的文件名命名组成 -->
+<mapper namespace="com.lddx.mapper.UserMapper">
+	<!-- 完成sql语句的查询操作 -->
+	<!-- id唯一，每一个sql语句的操作都需要配置唯一的id值
+	     resultType属性，表示希望把查询出的结果封装到哪个类型的javabean类中(自动封装)
+	 -->
+	<select id="selectAll" resultType="com.lddx.bean.User">
+		select * from user;
+	</select>
+	
+	
+
+</mapper>

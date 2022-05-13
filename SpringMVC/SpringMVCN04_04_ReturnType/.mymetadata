@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="SpringMVCN04_04_ReturnType"
+  id="myeclipse.1651796214009"
+  context-root="/SpringMVCN04_04_ReturnType"
+  j2ee-spec="5.0"
+  archive="SpringMVCN04_04_ReturnType.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+
